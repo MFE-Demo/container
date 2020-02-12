@@ -11,13 +11,13 @@ function Header() {
       <nav>
         <ul className="center-column">
           <li>
-            <NavLink to="/"></NavLink>
+            <NavLink to="/">Browse movies</NavLink>
           </li>
           <li>
-            <NavLink></NavLink>
+            {/* <NavLink></NavLink> */}
           </li>
           <li>
-            <NavLink></NavLink>
+            {/* <NavLink></NavLink> */}
           </li>
         </ul>
       </nav>

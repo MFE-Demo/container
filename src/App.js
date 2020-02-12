@@ -19,6 +19,8 @@ const Browse = ({ history }) => (
 const Movie = ({history}) => (
   <MicroFrontend history={history} host={movieHost} name='Movie' />
 )
+console.log(browseHost)
+console.log(window)
 
   return (
     <Router>
