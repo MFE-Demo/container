@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom' 
+import MicroFrontend from './Components/MicroFrontend/MicroFrontend'
+import Header from './Components/Header/Header'
+import About from './Components/About/About'
 import './App.css';
 
 function App() {
+
+  const {
+    REACT_APP_BROWSE_HOST: browseHost,
+    REACT_APP_MOVIE_HOST: movieHost,
+  } = process.env;
+
+const Browse = ({ history }) => (
+  <MicroFrontend history={history} host={browseHost} name='Browse' />
+)
+
+const Movie = ({history}) => (
+  <MicroFrontend history={history} host={movieHost} name='Movie' />
+)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path='/' component={Browse} />
+        <Route exact path='/movie/:id' component={Movie} />
+        <Route exact path='/about' component={About} />
+      </Switch>
+    </Router>
   );
 }
 
