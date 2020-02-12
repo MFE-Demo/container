@@ -4,14 +4,13 @@ class MicroFrontend extends Component {
   componentDidMount() {
     const { name, host, document } = this.props;
     const scriptId = `micro-frontend-script-${name}`;
-    console.log('MF HIT')
 
     if (document.getElementById(scriptId)) {
       this.renderMicroFrontend();
       return;
     }
-    console.log(`${host}/asset-manifest-json`)
-    fetch(`${host}/asset-manifest-json`)
+
+    fetch(`${host}/asset-manifest.json`)
       .then(res => res.json())
       .then(manifest => {
         const script = document.createElement("script");
@@ -20,6 +19,7 @@ class MicroFrontend extends Component {
         script.src = `${host}${manifest["main.js"]}`;
         script.onload = this.renderMicroFrontend;
         document.head.appendChild(script);
+        console.log(document.head)
       });
   }
 
