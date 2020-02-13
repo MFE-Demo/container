@@ -17,7 +17,9 @@ class MicroFrontend extends Component {
         script.id = scriptId;
         script.crossOrigin = "";
         console.log(manifest.files['main.js'])
-        script.src = `${host}${manifest["main.js"]}`;
+        console.log(manifest)
+        console.log(manifest.entrypoints[0])
+        script.src = `${host}/${manifest.entrypoints[0]}`;
         script.onload = this.renderMicroFrontend;
         document.head.appendChild(script);
         console.log(document.head)
@@ -26,13 +28,13 @@ class MicroFrontend extends Component {
 
   componentWillUnmount() {
     const { name, window } = this.props;
-
     window[`unmount${name}`](`${name}-container`);
   }
 
   renderMicroFrontend = () => {
     const { name, window, history } = this.props;
-
+    // console.log(window[`render${name}]`)
+    console.log(`renderBrowse`)
     window[`render${name}`](`${name}-container`, history);
   };
 

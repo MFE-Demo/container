@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import MicroFrontend from './Components/MicroFrontend/MicroFrontend'
 import Header from './Components/Header/Header'
 import About from './Components/About/About'
+// import {App as FlixFinder} from 'flixfinder'
 import './App.css';
 
 function App() {
