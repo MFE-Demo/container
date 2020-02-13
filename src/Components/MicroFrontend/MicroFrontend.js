@@ -19,6 +19,7 @@ class MicroFrontend extends Component {
         console.log(manifest.files['main.js'])
         console.log(manifest)
         console.log(manifest.entrypoints[0])
+        console.log(this.props.history)
         script.src = `${host}/${manifest.entrypoints[0]}`;
         script.onload = this.renderMicroFrontend;
         document.head.appendChild(script);

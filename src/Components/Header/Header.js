@@ -6,19 +6,17 @@ function Header() {
   return (
     <header>
       <div className="center-column">
-        <h1>flickFinder</h1>
+        <a style={{textDecoration: 'none'}}href="/">
+          <h1>flickFinder</h1>
+        </a>
       </div>
       <nav>
         <ul className="center-column">
           <li>
             <NavLink to="/">Browse movies</NavLink>
           </li>
-          <li>
-            {/* <NavLink></NavLink> */}
-          </li>
-          <li>
-            {/* <NavLink></NavLink> */}
-          </li>
+          <li><NavLink to='/shows/'>Browse shows</NavLink></li>
+          <li><NavLink to='/about'>About</NavLink></li>
         </ul>
       </nav>
     </header>
