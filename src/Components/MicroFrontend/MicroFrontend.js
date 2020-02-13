@@ -16,6 +16,7 @@ class MicroFrontend extends Component {
         const script = document.createElement("script");
         script.id = scriptId;
         script.crossOrigin = "";
+        console.log(manifest.files['main.js'])
         script.src = `${host}${manifest["main.js"]}`;
         script.onload = this.renderMicroFrontend;
         document.head.appendChild(script);
