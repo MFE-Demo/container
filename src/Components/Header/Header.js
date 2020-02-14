@@ -12,21 +12,22 @@ function Header(props) {
   return (
     <header>
       <div className="center-column">
-        <a id="main-header" href="/">
+        <NavLink id="main-header" to="/">
           <h1>
             <i className="fas fa-film" style={{ marginRight: "8px" }} />
             flickFinder
           </h1>
-        </a>
+        </NavLink>
       </div>
       <nav>
         <ul className="center-column">
-          <li>
-            <NavLink to="/">Browse movies</NavLink>
-          </li>
-          <li>
-            <NavLink to="/shows/">Browse shows</NavLink>
-          </li>
+          {user && user.loggedIn ? (
+            <li id="profile-container">
+              <img id="profile-img" src={user.profilePic} alt="Avatar" />
+              {user.username}
+            </li>
+          ) : null}
+
           <li>
             {user && user.loggedIn ? (
               <NavLink to="/" onClick={props.logout}>
@@ -36,6 +37,11 @@ function Header(props) {
               <NavLink to="/login">Login</NavLink>
             )}
           </li>
+          {user && user.loggedIn ? (
+            <li>
+              <NavLink to="mylist">My List</NavLink>
+            </li>
+          ) : null}
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
