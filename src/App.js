@@ -1,35 +1,41 @@
-import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom' 
-import MicroFrontend from './Components/MicroFrontend/MicroFrontend'
-import Header from './Components/Header/Header'
-import About from './Components/About/About'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import MicroFrontend from "./Components/MicroFrontend/MicroFrontend";
+import Header from "./Components/Header/Header";
+import About from "./Components/About/About";
+import Login from "./Components/Auth/Login";
 // import {App as FlixFinder} from 'flixfinder'
-import './App.css';
+import "./App.css";
 
 function App() {
-
   const {
     REACT_APP_BROWSE_HOST: browseHost,
-    REACT_APP_MOVIE_HOST: movieHost,
+    REACT_APP_MOVIE_HOST: movieHost
   } = process.env;
 
-const Browse = ({ history }) => (
-  <MicroFrontend history={history} host={browseHost} name='Browse' />
-)
+  const Browse = ({ history }) => (
+    <MicroFrontend history={history} host={browseHost} name="Browse" />
+  );
 
-const Movie = ({history}) => (
-  <MicroFrontend history={history} host={movieHost} name='Movie' />
-)
-console.log(browseHost)
-console.log(window)
+  const Movie = ({ history }) => (
+    <MicroFrontend history={history} host={movieHost} name="Movie" />
+  );
+  console.log(browseHost);
+  console.log(window);
 
   return (
     <Router>
       <Header />
       <Switch>
-        <Route exact path='/' component={Browse} />
-        <Route exact path='/movie/:id' component={Movie} />
-        <Route exact path='/about' component={About} />
+        <Route exact path="/" component={Browse} />
+        <Route exact path="/movie/:id" component={Movie} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/about" component={About} />
       </Switch>
     </Router>
   );

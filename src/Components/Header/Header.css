@@ -26,6 +26,11 @@ header h1 {
   font-size: 38px;
 }
 
+#main-header {
+  width: 30%;
+  text-decoration: none;
+  color: white;
+}
 header nav {
   height: 60px;
   padding: 0 10px;
