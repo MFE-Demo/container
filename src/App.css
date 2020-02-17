@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Candal|Kanit&display=swap");
+
+* {
+  font-family: "Kanit", sans-serif;
+}
+
 .App {
   text-align: center;
 }

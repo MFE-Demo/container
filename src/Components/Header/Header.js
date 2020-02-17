@@ -10,7 +10,7 @@ function Header(props) {
   console.log(user);
 
   return (
-    <header>
+    <header className="header-wrapper">
       <div className="center-column">
         <NavLink id="main-header" to="/">
           <h1>
