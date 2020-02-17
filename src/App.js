@@ -9,8 +9,12 @@ import MicroFrontend from "./Components/MicroFrontend/MicroFrontend";
 import Header from "./Components/Header/Header";
 import About from "./Components/About/About";
 import Login from "./Components/Auth/Login";
-// import {App as FlixFinder} from 'flixfinder'
+import Amplify from "aws-amplify";
+import aws_exports from "./aws-exports";
 import "./App.css";
+// import { withAuthenticator } from "aws-amplify-react";
+// Amplify.configure(aws_exports);
+// import {App as FlixFinder} from 'flixfinder'
 
 function App() {
   const {

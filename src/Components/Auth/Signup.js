@@ -2,14 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { login } from "../../Redux/Reducers/authReducer";
 import { Redirect } from "react-router-dom";
-import Amplify from "aws-amplify";
+import { Auth } from "aws-amplify";
 import "./Auth.css";
-import aws_exports from "../../aws-exports";
-Amplify.configure(aws_exports);
 
-export function Login(props) {
+export function Signup(props) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phoneNumber, setPhoneNumber] = React.useState("");
+  const [confirmationCode, setConfirmation] = React.useState("");
+  const [signedUp, setSignedUp] = React.useState(false);
 
   let { user } = props;
 
@@ -17,9 +19,7 @@ export function Login(props) {
     props.login(username, password);
     e.preventDefault();
   }
-  if (user) {
-    console.log("USER", user);
-  }
+
   if (user && user.loggedIn) return <Redirect to="/" />;
   return (
     <div className="parent-container">
@@ -33,6 +33,8 @@ export function Login(props) {
             type="text"
             value={username}
             placeholder="Enter Username"
+            maxLength="12"
+            minLength="1"
             onChange={e => setUsername(e.target.value)}
             required
           />
@@ -44,7 +46,31 @@ export function Login(props) {
             type="password"
             placeholder="Enter Password"
             value={password}
+            maxLength="10"
+            minLength="1"
             onChange={e => setPassword(e.target.value)}
+            required
+          />
+          <label>
+            <b>Email:</b>
+          </label>
+          <input
+            className="auth-input"
+            type="text"
+            placeholder="Enter Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+          <label>
+            <b>Phone Number:</b>
+          </label>
+          <input
+            className="auth-input"
+            type="text"
+            placeholder="Enter Phone Number"
+            value={phoneNumber}
+            onChange={e => setPhoneNumber(e.target.value)}
             required
           />
           <button
@@ -63,4 +89,4 @@ function mapStateToProps(state) {
   return state.user;
 }
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login })(Signup);

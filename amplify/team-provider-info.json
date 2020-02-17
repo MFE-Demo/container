@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-flickfinder-dev-142948-authRole",
+            "UnauthRoleArn": "arn:aws:iam::487314900137:role/amplify-flickfinder-dev-142948-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::487314900137:role/amplify-flickfinder-dev-142948-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-flickfinder-dev-142948-deployment",
+            "UnauthRoleName": "amplify-flickfinder-dev-142948-unauthRole",
+            "StackName": "amplify-flickfinder-dev-142948",
+            "StackId": "arn:aws:cloudformation:us-east-1:487314900137:stack/amplify-flickfinder-dev-142948/dd3bf610-51bb-11ea-9951-0eba1c1b0c34",
+            "AmplifyAppId": "d2m5mzy6xgrnp9"
+        },
+        "categories": {
+            "auth": {
+                "flickfinder2ad54b7f": {}
+            }
+        }
+    }
+}

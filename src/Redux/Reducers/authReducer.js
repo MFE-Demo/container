@@ -1,17 +1,37 @@
 import axios from "axios";
 import { LOGIN, LOGOUT } from "../actionTypes";
+import { Auth } from "aws-amplify";
 
 const initialState = {
   user: {}
 };
 
 export const login = (username, password) => {
-  let data = axios
-    .post("/api/login", { username, password })
-    .then(res => res.data);
+  // let data = axios
+  //   .post("/api/login", { username, password })
+  //   .then(res => res.data);
+  // return {
+  //   type: LOGIN,
+  //   payload: data
+  // };
+
+  let data = Auth.signIn({
+    username: username,
+    password: password
+  })
+    .then(console.log(`${username} logged in!`))
+    .catch(err => console.log(err));
+
+  const user = {
+    user: data,
+    profilePic: `https://robohash.org/${data.username}`,
+    loggedIn: true
+  };
+  console.log(data);
+
   return {
     type: LOGIN,
-    payload: data
+    payload: user
   };
 };
 
@@ -25,17 +45,17 @@ export const logout = () => {
 export default function(state = initialState, action) {
   let { type, payload } = action;
   switch (type) {
-    case LOGIN + '_FULFILLED':
+    case LOGIN:
       return {
         ...state,
-        user: payload,
+        user: payload
       };
-      case LOGIN + "_REJECTED":
-        return { ...state, error: payload };
-    case LOGOUT + '_FULFILLED':
+    case LOGIN + "_REJECTED":
+      return { ...state, error: payload };
+    case LOGOUT + "_FULFILLED":
       return {
         ...state,
-        user: {},
+        user: {}
       };
     default:
       return state;

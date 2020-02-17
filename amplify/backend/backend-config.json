@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"flickfinder2ad54b7f": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
