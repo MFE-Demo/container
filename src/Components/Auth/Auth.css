@@ -37,8 +37,26 @@ form {
   cursor: pointer;
 }
 
+.cancel-button {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #f33d3d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
 .login-button:hover {
   opacity: 0.8;
+}
+
+#welcome-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .field-icon {
@@ -59,6 +77,12 @@ form {
   position: relative;
   z-index: 2;
   cursor: pointer;
+}
+
+#auth-bottom {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
 }
 
 @keyframes fadein {

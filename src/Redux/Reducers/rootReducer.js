@@ -6,7 +6,7 @@ import authReducer from "./authReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["entry"]
+  whitelist: ["user"]
 };
 
 const rootReducer = combineReducers({

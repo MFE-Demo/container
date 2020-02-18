@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { login } from "../../Redux/Reducers/authReducer";
 import { Redirect } from "react-router-dom";
-import Amplify from "aws-amplify";
+import Amplify, { Auth } from "aws-amplify";
 import "./Auth.css";
 import aws_exports from "../../aws-exports";
 Amplify.configure(aws_exports);
@@ -13,11 +13,22 @@ export function Login(props) {
 
   let { user } = props;
 
-  function loginUser(e) {
-    props.login(username, password);
+  async function loginUser(e) {
     e.preventDefault();
+    // props.login(username, password);
+
+    const signInResponse = await Auth.signIn({
+      username,
+      password
+    });
+    props.login(signInResponse);
+
+    // console.log("Sign in response: ", signInResponse);
+
+    console.log(props);
   }
-  if (user) {
+
+  if (user.length) {
     console.log("USER", user);
   }
   if (user && user.loggedIn) return <Redirect to="/" />;
@@ -54,6 +65,14 @@ export function Login(props) {
           >
             Login
           </button>
+          <section id="auth-bottom">
+            <div>
+              Not a member? <a href="/signup">Sign Up</a>
+            </div>
+            <div>
+              <a href="/forgot">Forgot your password?</a>
+            </div>
+          </section>
         </div>
       </form>
     </div>

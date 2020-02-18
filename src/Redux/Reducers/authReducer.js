@@ -1,44 +1,38 @@
 import axios from "axios";
-import { LOGIN, LOGOUT } from "../actionTypes";
+import { LOGIN, LOGOUT, REGISTER } from "../actionTypes";
 import { Auth } from "aws-amplify";
 
 const initialState = {
-  user: {}
+  user: {},
+  registered: false
 };
 
-export const login = (username, password) => {
-  // let data = axios
-  //   .post("/api/login", { username, password })
-  //   .then(res => res.data);
-  // return {
-  //   type: LOGIN,
-  //   payload: data
-  // };
-
-  let data = Auth.signIn({
-    username: username,
-    password: password
-  })
-    .then(console.log(`${username} logged in!`))
-    .catch(err => console.log(err));
-
+export const login = activeUser => {
   const user = {
-    user: data,
-    profilePic: `https://robohash.org/${data.username}`,
+    user: activeUser,
+    profilePic: `https://robohash.org/${activeUser.username}`,
     loggedIn: true
   };
-  console.log(data);
-
   return {
     type: LOGIN,
     payload: user
   };
 };
 
+export const register = activeUser => {
+  const user = {
+    registered: true
+  };
+
+  return {
+    type: REGISTER,
+    payload: user
+  };
+};
+
 export const logout = () => {
   return {
-    type: LOGOUT,
-    payload: axios.delete("/api/logout")
+    type: LOGOUT
   };
 };
 
@@ -52,7 +46,12 @@ export default function(state = initialState, action) {
       };
     case LOGIN + "_REJECTED":
       return { ...state, error: payload };
-    case LOGOUT + "_FULFILLED":
+    case REGISTER:
+      return {
+        ...state,
+        user: payload
+      };
+    case LOGOUT:
       return {
         ...state,
         user: {}

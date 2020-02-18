@@ -4,6 +4,7 @@ import MicroFrontend from "./Components/MicroFrontend/MicroFrontend";
 import Header from "./Components/Header/Header";
 import About from "./Components/About/About";
 import Login from "./Components/Auth/Login";
+import Signup from "./Components/Auth/Signup";
 import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
 import "./App.css";
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/" component={Browse} />
         <Route exact path="/movie/:id" component={Movie} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />
       </Switch>
     </Router>
