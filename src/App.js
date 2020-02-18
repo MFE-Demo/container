@@ -10,6 +10,8 @@ import "./App.css";
 
 //The purpose of this container application is to provide a shell for our entire app that can dynamically download our micro frontends at runtime and glue them together into something cohesive on a single page.
 
+//All of our apps for our microfrontend make use of React Router for declarative routing. For our container application use a <BrowserRouter> which internally instantiates a history object. We use this object to manipulate the client-side history and also link multiple React apps together. Instead of instantiating history objects for each app, we do it in our main container app and pass it to our micro apps inside. This opens up the door to the ability to pass parameters from one micro app to another via the URL.
+
 function App() {
   const {
     REACT_APP_BROWSE_HOST: browseHost,
