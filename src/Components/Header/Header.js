@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { Auth } from "aws-amplify";
 import { logout } from "../../Redux/Reducers/authReducer";
 
 import "./Header.css";
 
 function Header(props) {
   let { user } = props;
-  console.log(user);
+  console.log(props);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const logoutUser = () => {
+    Auth.signOut();
+    props.logout();
+  };
 
   return (
     <header className="header-wrapper">
@@ -30,7 +40,7 @@ function Header(props) {
 
           <li>
             {user && user.loggedIn ? (
-              <NavLink to="/" onClick={props.logout}>
+              <NavLink to="/" onClick={logoutUser}>
                 Logout
               </NavLink>
             ) : (

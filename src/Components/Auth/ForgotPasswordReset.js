@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Auth.css";
 import { Auth } from "aws-amplify";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 function ForgotPassword() {
   const [verificationCode, setCode] = React.useState("");
@@ -119,14 +119,16 @@ function ForgotPassword() {
               </span>
             </p>
           </div>
-          <button
-            type="submit"
-            className="login-button"
-            onClick={e => sendResetRequest(e)}
-            // disabled
-          >
-            Send reset link
-          </button>
+          <Link to="/login">
+            <button
+              type="submit"
+              className="login-button"
+              onClick={e => sendResetRequest(e)}
+              // disabled
+            >
+              Submit Changes
+            </button>
+          </Link>
         </div>
       </form>
     </section>
