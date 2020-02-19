@@ -5,6 +5,7 @@ import Header from "./Components/Header/Header";
 import About from "./Components/About/About";
 import Login from "./Components/Auth/Login";
 import Signup from "./Components/Auth/Signup";
+import ForgotPassword from "./Components/Auth/ForgotPassword";
 import "./App.css";
 
 //The purpose of this container application is to provide a shell for our entire app that can dynamically download our micro frontends at runtime and glue them together into something cohesive on a single page.
@@ -41,6 +42,7 @@ function App() {
         {/* <Route exact path="/movie/:id" component={Reviews} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/forgot" component={ForgotPassword} />
         <Route exact path="/about" component={About} />
       </Switch>
     </Router>
