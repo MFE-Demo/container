@@ -43,49 +43,82 @@ function ForgotPassword() {
           </p>
         </div>
         <div className="input-container">
-          <label>
-            <b>Verification Code:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="text"
-            value={verificationCode}
-            placeholder="Enter code"
-            onChange={e => setCode(e.target.value)}
-          />
-          <label>
-            <b>Email:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="email"
-            value={email}
-            placeholder="Enter email"
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <label>
-            <b>New Password:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Enter Password"
-            value={newPass1}
-            onChange={e => setNewPass1(e.target.value)}
-            required
-          />
-          <label>
-            <b>Confirm Password:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Enter Password"
-            value={newPass2}
-            onChange={e => setNewPass2(e.target.value)}
-            required
-          />
+          <div className="field">
+            <label>
+              <b>Verification Code:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                // id="username"
+                type="text"
+                value={verificationCode}
+                placeholder="Enter Verification Code"
+                onChange={e => setCode(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-user-check"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>Email:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="email"
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>New Password:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+                value={newPass1}
+                onChange={e => setNewPass1(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>Confirm Password:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+                value={newPass2}
+                onChange={e => setNewPass2(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
           <button
             type="submit"
             className="login-button"

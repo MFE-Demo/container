@@ -9,7 +9,9 @@ function ForgotPassword() {
 
   async function sendResetRequest(e) {
     e.preventDefault();
-    await Auth.forgotPassword(email);
+    let response = await Auth.forgotPassword(email);
+
+    console.log(response);
 
     setResetting(true);
   }
@@ -37,17 +39,25 @@ function ForgotPassword() {
           </p>
         </div>
         <div className="input-container">
-          <label>
-            <b>Email:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="email"
-            value={email}
-            placeholder="Enter email"
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
+          <div className="field">
+            <label>
+              <b>Email:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="email"
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
           <button
             type="submit"
             className="login-button"

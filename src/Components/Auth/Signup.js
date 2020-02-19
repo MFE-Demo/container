@@ -42,54 +42,82 @@ export function Signup(props) {
     <div className="parent-container">
       <form>
         <div className="input-container">
-          <label>
-            <b>Username:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="text"
-            value={username}
-            placeholder="Enter Username"
-            // maxLength="12"
-            // minLength="1"
-            onChange={e => setUsername(e.target.value)}
-            required
-          />
-          <label>
-            <b>Password:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            // maxLength="10"
-            // minLength="1"
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-          <label>
-            <b>Email:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="text"
-            placeholder="Enter Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <label>
-            <b>Phone Number:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="text"
-            placeholder="Enter Phone Number"
-            value={phoneNumber}
-            onChange={e => setPhoneNumber(e.target.value)}
-            required
-          />
+          <div className="field">
+            <label>
+              <b>Username:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="username"
+                type="text"
+                value={username}
+                placeholder="Enter Username"
+                onChange={e => setUsername(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>Password:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>Email:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="email"
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>Phone Number:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="tel"
+                type="tel"
+                placeholder="Enter Phone Number"
+                value={phoneNumber}
+                onChange={e => setPhoneNumber(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-phone"></i>
+              </span>
+            </p>
+          </div>
           <button
             type="submit"
             className="login-button"

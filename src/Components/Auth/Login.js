@@ -36,28 +36,44 @@ export function Login(props) {
     <div className="parent-container">
       <form>
         <div className="input-container">
-          <label>
-            <b>Username:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="text"
-            value={username}
-            placeholder="Enter Username"
-            onChange={e => setUsername(e.target.value)}
-            required
-          />
-          <label>
-            <b>Password:</b>
-          </label>
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
+          <div className="field">
+            <label>
+              <b>Username:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="username"
+                type="text"
+                value={username}
+                placeholder="Enter Username"
+                onChange={e => setUsername(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <label>
+              <b>Password:</b>
+            </label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
           <button
             type="submit"
             className="login-button"
