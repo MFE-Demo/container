@@ -5,11 +5,8 @@
 
 header {
   width: 100%;
-  /* background-color: #e79652; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  /* background-image: linear-gradient(to bottom, #e79652, #e0f140); */
-  /* background-image: linear-gradient(to bottom, #52bde7, #c2f140); */
   background-image: linear-gradient(to bottom, #01161f, #17a5c9);
   color: white;
 }
@@ -49,10 +46,10 @@ header h1 {
 }
 
 #profile-container {
+  margin-right: 10px !important;
 }
 
 #profile-img {
-  margin-right: 5px;
   height: 30px;
   width: 30px;
   border-radius: 50%;

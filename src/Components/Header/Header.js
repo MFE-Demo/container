@@ -34,10 +34,21 @@ function Header(props) {
           {user && user.loggedIn ? (
             <li id="profile-container">
               <img id="profile-img" src={user.profilePic} alt="Avatar" />
-              {user.username}
             </li>
           ) : null}
-
+          {user && user.loggedIn ? (
+            <>
+              <li>
+                <NavLink to={`/${user.user.username}`}>Account</NavLink>
+              </li>
+              <li>
+                <NavLink to="/mylist">My List</NavLink>
+              </li>
+            </>
+          ) : null}
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
           <li>
             {user && user.loggedIn ? (
               <NavLink to="/" onClick={logoutUser}>
@@ -46,14 +57,6 @@ function Header(props) {
             ) : (
               <NavLink to="/login">Login</NavLink>
             )}
-          </li>
-          {user && user.loggedIn ? (
-            <li>
-              <NavLink to="mylist">My List</NavLink>
-            </li>
-          ) : null}
-          <li>
-            <NavLink to="/about">About</NavLink>
           </li>
         </ul>
       </nav>
