@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { register } from "../../Redux/Reducers/authReducer";
 import { Redirect, Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import Validate from "./utility/FormValidation";
+import FormErrors from "./utility/FormErrors";
 import "./Auth.css";
 
 export function Signup(props) {
@@ -12,24 +14,48 @@ export function Signup(props) {
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [confirmationCode, setConfirmation] = React.useState("");
   const [signedUp, setSignedUp] = React.useState(false);
+  const [errors, setErrors] = React.useState({
+    cognito: null,
+    blankfield: false,
+    passwordmatch: false
+  });
 
   let { user } = props;
 
-  async function registerUser(e) {
-    // props.login(username, password);
-    e.preventDefault();
-    const signUpResponse = await Auth.signUp({
-      username,
-      password,
-      attributes: {
-        email
-      }
+  function clearErrors() {
+    setErrors({
+      cognito: null,
+      blankfield: false,
+      passwordmatch: false
     });
-    props.register(signUpResponse);
-    console.log(signUpResponse);
   }
 
-  // if (user && user.loggedIn) return <Redirect to="/" />;
+  async function registerUser(e) {
+    e.preventDefault();
+
+    clearErrors();
+    const error = Validate(e, errors);
+    if (error) {
+      setErrors({ ...errors, ...error });
+    }
+
+    try {
+      const signUpResponse = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email
+        }
+      });
+      props.register(signUpResponse);
+      console.log(signUpResponse);
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
+      setErrors({ ...errors, cognito: err });
+    }
+  }
+
   if (user && user.registered)
     return (
       <div id="welcome-wrapper">
@@ -40,6 +66,7 @@ export function Signup(props) {
     );
   return (
     <div className="parent-container">
+      <FormErrors formerrors={errors} />
       <form>
         <div className="input-container">
           <div className="field">

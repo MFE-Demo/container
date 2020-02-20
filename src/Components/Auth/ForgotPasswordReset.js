@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./Auth.css";
 import { Auth } from "aws-amplify";
+import Validate from "./utility/FormValidation";
+import FormErrors from "./utility/FormErrors";
 import { Redirect, Link } from "react-router-dom";
 
 function ForgotPassword() {
@@ -9,6 +11,19 @@ function ForgotPassword() {
   const [newPass1, setNewPass1] = React.useState("");
   const [newPass2, setNewPass2] = React.useState("");
   const [pwsMatch, setMatching] = React.useState(false);
+  const [errors, setErrors] = React.useState({
+    cognito: null,
+    blankfield: false,
+    passwordmatch: false
+  });
+
+  function clearErrors() {
+    setErrors({
+      cognito: null,
+      blankfield: false,
+      passwordmatch: false
+    });
+  }
 
   useEffect(() => {
     if (newPass1 === newPass2) {
@@ -20,9 +35,20 @@ function ForgotPassword() {
 
   async function sendResetRequest(e) {
     e.preventDefault();
+    clearErrors();
+    const error = Validate(e, errors);
+    if (error) {
+      setErrors({ ...errors, ...error });
+    }
     if (pwsMatch) {
-      await Auth.forgotPasswordSubmit(email, verificationCode, newPass2);
-    } else console.log("No match on pws");
+      try {
+        await Auth.forgotPasswordSubmit(email, verificationCode, newPass2);
+      } catch (error) {
+        let err = null;
+        !error.message ? (err = { message: error }) : (err = error);
+        setErrors({ ...errors, cognito: err });
+      }
+    } else setErrors({ ...errors, passwordmatch: true });
   }
 
   return (
@@ -41,6 +67,7 @@ function ForgotPassword() {
             Please enter the verification code sent to your email address along
             with your email address and a new password.
           </p>
+          <FormErrors formerrors={errors} />
         </div>
         <div className="input-container">
           <div className="field">

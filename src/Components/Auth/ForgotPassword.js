@@ -1,19 +1,43 @@
 import React from "react";
 import "./Auth.css";
+import Validate from "./utility/FormValidation";
+import FormErrors from "./utility/FormErrors";
 import ForgotPasswordReset from "./ForgotPasswordReset";
 import { Auth } from "aws-amplify";
 
 function ForgotPassword() {
   const [email, setEmail] = React.useState("");
   const [resetting, setResetting] = React.useState("");
+  const [errors, setErrors] = React.useState({
+    cognito: null,
+    blankfield: false,
+    passwordmatch: false
+  });
+
+  function clearErrors() {
+    setErrors({
+      cognito: null,
+      blankfield: false,
+      passwordmatch: false
+    });
+  }
 
   async function sendResetRequest(e) {
     e.preventDefault();
-    let response = await Auth.forgotPassword(email);
-
-    console.log(response);
-
-    setResetting(true);
+    clearErrors();
+    const error = Validate(e, errors);
+    if (error) {
+      setErrors({ ...errors, ...error });
+    }
+    try {
+      let response = await Auth.forgotPassword(email);
+      console.log(response);
+      setResetting(true);
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
+      setErrors({ ...errors, cognito: err });
+    }
   }
 
   if (!resetting) {
@@ -39,6 +63,7 @@ function ForgotPassword() {
           </p>
         </div>
         <div className="input-container">
+          <FormErrors formerrors={errors} />
           <div className="field">
             <label>
               <b>Email:</b>
