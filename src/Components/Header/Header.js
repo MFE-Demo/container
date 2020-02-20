@@ -39,7 +39,7 @@ function Header(props) {
           {user && user.loggedIn ? (
             <>
               <li>
-                <NavLink to={`/${user.user.username}`}>Account</NavLink>
+                <NavLink to="/account">Account</NavLink>
               </li>
               <li>
                 <NavLink to="/mylist">My List</NavLink>

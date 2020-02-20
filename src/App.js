@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MicroFrontend from "./Components/MicroFrontend/MicroFrontend";
 import Header from "./Components/Header/Header";
 import About from "./Components/About/About";
+import Account from "./Components/Account/Account";
 import Login from "./Components/Auth/Login";
 import Signup from "./Components/Auth/Signup";
 import ForgotPassword from "./Components/Auth/ForgotPassword";
@@ -66,6 +67,7 @@ class App extends Component {
   );
 
   render() {
+    const { user } = this.props.user;
     return (
       <Router>
         <Header />
@@ -76,6 +78,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/forgot" component={ForgotPassword} />
+          <Route exact path="/account" component={Account} />
           <Route exact path="/about" component={About} />
         </Switch>
       </Router>
