@@ -57,9 +57,8 @@ export function Login(props) {
   if (user && user.loggedIn) return <Redirect to="/" />;
   return (
     <div className="parent-container">
-      <h2>
-        <FormErrors formerrors={errors} />
-      </h2>
+      <h1>Sign in</h1>
+      <FormErrors formerrors={errors} />
       <form>
         <div className="input-container">
           <div className="field">

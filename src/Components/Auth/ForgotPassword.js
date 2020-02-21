@@ -90,6 +90,7 @@ function ForgotPassword() {
           >
             Send reset link
           </button>
+          <a href="/login">Back</a>
         </div>
       </section>
     );
